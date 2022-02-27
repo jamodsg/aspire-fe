@@ -84,6 +84,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
+import { useQuasar } from 'quasar';
 
 // store
 import { useStore } from 'src/store';
@@ -104,6 +105,7 @@ export default defineComponent({
   },
   setup() {
     const $store = useStore();
+    const $q = useQuasar();
 
     let isAddCard = ref(false);
     let cardName = ref('');
@@ -118,6 +120,13 @@ export default defineComponent({
       $store.commit('cards/addDebitCard', card);
       isAddCard.value = false;
       cardName.value = '';
+      $q.notify({
+        color: 'green',
+        icon: 'thumb_up',
+        message: 'Card added successfully !!!',
+        position: 'top-right',
+        timeout: 2000,
+      });
     };
 
     return {

@@ -11,6 +11,9 @@
 
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue';
+import { useQuasar } from 'quasar';
+
+// store
 import { useStore } from 'src/store';
 
 // Services
@@ -28,6 +31,7 @@ export default defineComponent({
   },
   setup() {
     const $store = useStore();
+    const $q = useQuasar();
 
     const getRecentTransaction = async () => {
       try {
@@ -35,6 +39,7 @@ export default defineComponent({
         $store.commit('cards/updateRecentTransaction', res);
       } catch (err) {
         console.log('Error => ', err);
+        showErrorNotify('Something went wrong');
       }
     };
 
@@ -44,7 +49,18 @@ export default defineComponent({
         $store.commit('cards/updateDebitCards', res);
       } catch (err) {
         console.log('Error => ', err);
+        showErrorNotify('Something went wrong');
       }
+    };
+
+    const showErrorNotify = (message: string) => {
+      $q.notify({
+        color: 'negative',
+        icon: 'report_problem',
+        message: message,
+        position: 'top-right',
+        timeout: 2000,
+      });
     };
 
     onMounted(async () => {

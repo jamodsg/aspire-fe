@@ -187,20 +187,25 @@
 </template>
 
 <script lang="ts">
-import { useStore } from 'src/store';
-import { debitCardAction } from 'src/utils/card';
 import { defineComponent, ref } from 'vue';
-import { DateHelper } from 'src/utils';
+import { useQuasar } from 'quasar';
+
+// store
+import { useStore } from 'src/store';
+
+// utils
+import { debitCardAction, DateHelper } from 'src/utils';
 
 export default defineComponent({
   name: 'CardSlider',
   props: {},
   setup() {
+    const $store = useStore();
+    const $q = useQuasar();
+
     let slide = ref(0);
     let confirm = ref(false);
     let showCardNumber = ref(false);
-
-    const $store = useStore();
 
     const setSlide = (index: number): void => {
       slide.value = index;
@@ -208,6 +213,11 @@ export default defineComponent({
 
     const actionFire = (index: number): void => {
       if (index === 0) {
+        showSuccessNotify(
+          $store.state.cards.debitCards[slide.value].isFrozen == true
+            ? 'Card freeze successfully !!!'
+            : 'Card unfreeze successfully !!!'
+        );
         $store.commit('cards/freezeDebitCard', slide.value);
       }
       if (index === 4) {
@@ -217,12 +227,23 @@ export default defineComponent({
 
     const cancelCard = (): void => {
       $store.commit('cards/removeDebitCard', slide.value);
+      showSuccessNotify('Card removed successfully !!!');
       confirm.value = false;
       slide.value = 0;
     };
 
     const formatExpiryDate = (date: string): string => {
       return DateHelper.formatExpiryDate(date);
+    };
+
+    const showSuccessNotify = (message: string) => {
+      $q.notify({
+        color: 'green',
+        icon: 'thumb_up',
+        message: message,
+        position: 'top-right',
+        timeout: 2000,
+      });
     };
 
     return {
