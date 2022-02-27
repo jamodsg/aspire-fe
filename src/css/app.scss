@@ -1,0 +1,68 @@
+// app global css in SCSS form
+@font-face {
+  font-family: OpenSans;
+  src: url(../../public/fonts/OpenSans-Regular.ttf);
+}
+body {
+  font-family: OpenSans;
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+.sidebar-header {
+  .q-img--menu div:first-child {
+    padding-bottom: 14% !important;
+  }
+  .q-img__image {
+    height: 35px;
+    width: auto;
+    object-position: unset;
+    object-fit: unset;
+  }
+}
+@media (min-width: 600px) {
+  .sidebar-header {
+    .q-img--menu div:first-child {
+      padding-bottom: 6% !important;
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .sidebar-header {
+    .q-img--menu div:first-child {
+      padding-bottom: 14% !important;
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .sidebar-header {
+    .q-img--menu div:first-child {
+      padding-bottom: 14% !important;
+    }
+  }
+}
+.menu-action-box {
+  box-shadow: 0px -3px 6px #00000014;
+  border: none;
+  position: sticky;
+  bottom: 0;
+  background: $white;
+  text-align: center;
+  font-size: 9px;
+  a {
+    color: $dark-one;
+    text-decoration: none;
+  }
+  .q-item-type {
+    box-shadow: none;
+  }
+}
+@media (min-width: 769px) {
+  .menu-action-box {
+    display: none;
+  }
+}
+
+.q-focus-helper {
+  background: none !important;
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Hamleys",
+    "date": "20 May 2020",
+    "price": "150",
+    "icon": "file-storage.svg",
+    "type": "file"
+  },
+  {
+    "name": "Hamleys",
+    "date": "20 May 2020",
+    "price": "-150",
+    "icon": "flights.svg",
+    "type": "flights"
+  },
+  {
+    "name": "Hamleys",
+    "date": "20 May 2020",
+    "price": "-150",
+    "icon": "megaphone.svg",
+    "type": "megaphone"
+  },
+  {
+    "name": "Hamleys",
+    "date": "20 May 2020",
+    "price": "-150",
+    "icon": "file-storage.svg",
+    "type": "file"
+  }
+]
